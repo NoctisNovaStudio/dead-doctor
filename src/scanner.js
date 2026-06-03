@@ -1,4 +1,4 @@
-/**
+﻿/**
  * scanner.js — dead-doctor
  * Finds dead code, ghost pages, unused exports/imports, zombie dependencies,
  * and commented-out code blocks in TypeScript / Next.js projects.
@@ -197,7 +197,7 @@ export async function scanUnusedExports(projectPath) {
           line,
           snippet: `export { ${name} }`,
           message: `\`${name}\` is exported but never imported anywhere in the project — remove it or it will bloat your bundle.`,
-          docs: "https://noctisnova.com/docs/dead-code/unused-exports",
+          docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
           penalty: PENALTY_UNUSED_EXPORT,
         });
       }
@@ -279,7 +279,7 @@ export async function scanUnusedImports(projectPath) {
         message:
           `${unusedNames.length} unused import${unusedNames.length !== 1 ? "s" : ""}: ${unusedNames.map((u) => `\`${u.name}\``).join(", ")}. ` +
           "Unused imports increase bundle parse time and make the file harder to read.",
-        docs: "https://noctisnova.com/docs/dead-code/unused-imports",
+        docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
         penalty: PENALTY_UNUSED_IMPORT,
         extra: unusedNames,
       });
@@ -366,7 +366,7 @@ export async function scanDeadPages(projectPath) {
         message:
           `The page at \`${route}\` exists but is never linked to from anywhere in the codebase. ` +
           "It's either forgotten, replaced, or an orphan left from a refactor.",
-        docs: "https://noctisnova.com/docs/dead-code/dead-pages",
+        docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
         penalty: PENALTY_DEAD_PAGE,
       });
     }
@@ -417,7 +417,7 @@ export async function scanEmptyFiles(projectPath) {
         message:
           `\`${path.basename(filePath)}\` is effectively empty (${stripped.length} chars of real code). ` +
           "It's dead weight — remove it or add the missing implementation.",
-        docs: "https://noctisnova.com/docs/dead-code/empty-files",
+        docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
         penalty: PENALTY_EMPTY_FILE,
       });
       continue;
@@ -440,7 +440,7 @@ export async function scanEmptyFiles(projectPath) {
         message:
           `\`${path.basename(filePath)}\` only contains import statements — no exports, no logic, no side effects. ` +
           "It does nothing and can be removed.",
-        docs: "https://noctisnova.com/docs/dead-code/empty-files",
+        docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
         penalty: PENALTY_EMPTY_FILE,
       });
     }
@@ -520,7 +520,7 @@ export async function scanZombieDependencies(projectPath) {
         message:
           `\`${dep}\` is in your dependencies but never imported in any source file. ` +
           "Remove it to reduce install size, audit surface, and CI time.",
-        docs: "https://noctisnova.com/docs/dead-code/zombie-deps",
+        docs: "https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup",
         penalty: PENALTY_ZOMBIE_DEP,
       });
     }
@@ -583,7 +583,7 @@ export async function scanCommentedCodeBlocks(projectPath) {
           message:
             `${blockLines.length}-line block of commented-out code starting at line ${blockStart + 1}. ` +
             "Commented-out code is never run, confuses readers, and adds noise to diffs. Delete it — git has the history.",
-          docs: "https://noctisnova.com/docs/dead-code/commented-code",
+          docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
           penalty: PENALTY_COMMENT_BLOCK,
         });
       }
@@ -693,7 +693,7 @@ export async function scanUnreachableCode(projectPath) {
           message:
             `Code after \`${stmt.getKindName().replace("Statement", "").toLowerCase()}\` — ` +
             `\`${snippet}\` and everything below it in this block will never execute.`,
-          docs: "https://noctisnova.com/docs/dead-code/unreachable-code",
+          docs: "https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup",
           penalty: PENALTY_UNREACHABLE_CODE,
         });
 

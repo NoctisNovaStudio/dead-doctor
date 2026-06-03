@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ui.js — dead-doctor
  * Terminal UI: score box, numbered dead-code issue list, agent prompt builder.
  */
@@ -35,7 +35,7 @@ const RULE_META = {
       "so each looks 'used' — but nothing reachable imports the group. It still ships, builds, and gets " +
       "maintained for no reason. Reachability analysis finds the whole dead island.",
     severity: "warning",
-    docs: "https://noctisnova.com/docs/dead-code/dead-files",
+    docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
   },
 
   "unused-export": {
@@ -52,7 +52,7 @@ const RULE_META = {
       "A 20KB utility function exported but never used means every user downloads and parses " +
       "20KB of JavaScript they don't need — on every page load. On mobile, that's a slow first render.",
     severity: "warning",
-    docs: "https://noctisnova.com/docs/dead-code/unused-exports",
+    docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
   },
 
   "duplicate-file": {
@@ -69,7 +69,7 @@ const RULE_META = {
       "`utils/format.ts` was copied into a new feature folder instead of imported. Months later the original " +
       "gets a timezone fix; the copy doesn't, and only that feature shows wrong times. One canonical copy avoids this.",
     severity: "warning",
-    docs: "https://noctisnova.com/docs/dead-code/duplicate-files",
+    docs: "https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup",
   },
 
   "unused-import": {
@@ -86,7 +86,7 @@ const RULE_META = {
       "A file with 8 unused imports loads 8 modules the browser doesn't need, " +
       "increasing parse time and memory pressure — especially on mobile CPUs.",
     severity: "info",
-    docs: "https://noctisnova.com/docs/dead-code/unused-imports",
+    docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
   },
 
   "dead-page": {
@@ -104,7 +104,7 @@ const RULE_META = {
       "sitemap, and potentially indexed by search engines — serving content users can never " +
       "navigate to through the app.",
     severity: "warning",
-    docs: "https://noctisnova.com/docs/dead-code/dead-pages",
+    docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
   },
 
   "empty-file": {
@@ -122,7 +122,7 @@ const RULE_META = {
       "who opens the directory wonder if there's a second button component — then spend time " +
       "reading a file that does nothing.",
     severity: "info",
-    docs: "https://noctisnova.com/docs/dead-code/empty-files",
+    docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
   },
 
   "zombie-dep": {
@@ -140,7 +140,7 @@ const RULE_META = {
       "10 more packages slowing down CI installs, and 10 more potential supply-chain " +
       "attack vectors (like the left-pad incident, but with security implications).",
     severity: "warning",
-    docs: "https://noctisnova.com/docs/dead-code/zombie-deps",
+    docs: "https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup",
   },
 
   "comment-block": {
@@ -158,7 +158,7 @@ const RULE_META = {
       "intentionally disabled? Is this a WIP? Should I uncomment this? Git history " +
       "already preserves the code — commented-out code should be deleted.",
     severity: "info",
-    docs: "https://noctisnova.com/docs/dead-code/commented-code",
+    docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
   },
 
   "unreachable-code": {
@@ -176,7 +176,7 @@ const RULE_META = {
       "data that should have been rejected gets processed, potentially corrupting your database " +
       "or causing a crash downstream.",
     severity: "warning",
-    docs: "https://noctisnova.com/docs/dead-code/unreachable-code",
+    docs: "https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup",
   },
 };
 
@@ -283,7 +283,7 @@ export function renderIssueList(issues, { colour = true } = {}) {
       explanation: "",
       realWorld: "",
       severity: "info",
-      docs: "https://noctisnova.com/docs/dead-code",
+      docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
     };
 
     const count      = ruleIssues.length;

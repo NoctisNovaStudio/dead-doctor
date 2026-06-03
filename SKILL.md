@@ -1,4 +1,4 @@
----
+﻿---
 name: dead-doctor
 version: 1.0.0
 publisher: NoctisNova
@@ -322,10 +322,10 @@ curl -H "Accept: text/markdown" https://noctisnova.com/tools/dead-doctor/dead-co
 | Resource | URL |
 |---|---|
 | NoctisNova | https://noctisnova.com |
-| Dead Files Guide | https://noctisnova.com/docs/dead-code/dead-files |
-| Unused Exports Guide | https://noctisnova.com/docs/dead-code/unused-exports |
-| Duplicate Files Guide | https://noctisnova.com/docs/dead-code/duplicate-files |
-| Dead Pages Guide | https://noctisnova.com/docs/dead-code/dead-pages |
-| Zombie Deps Guide | https://noctisnova.com/docs/dead-code/zombie-deps |
-| Commented Code Guide | https://noctisnova.com/docs/dead-code/commented-code |
-| Unreachable Code Guide | https://noctisnova.com/docs/dead-code/unreachable-code |
+| Dead Files Guide | https://noctisnova.com/tools/dead-doctor/dead-code-guide |
+| Unused Exports Guide | https://noctisnova.com/tools/dead-doctor/dead-code-guide |
+| Duplicate Files Guide | https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup |
+| Dead Pages Guide | https://noctisnova.com/tools/dead-doctor/dead-code-guide |
+| Zombie Deps Guide | https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup |
+| Commented Code Guide | https://noctisnova.com/tools/dead-doctor/dead-code-guide |
+| Unreachable Code Guide | https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup |

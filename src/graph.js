@@ -1,4 +1,4 @@
-/**
+﻿/**
  * graph.js — dead-doctor
  *
  * The advanced reachability engine. Builds a real import graph (resolving
@@ -417,7 +417,7 @@ export function findDeadFiles(graph, reachable) {
         `\`${node.rel}\` can't be reached from any entry point (page, route, layout, config, test, or package main) ` +
         "by following imports — nothing the app actually runs depends on it, directly or transitively. " +
         "It's dead weight that still ships, builds, and gets maintained. Confirm it's not loaded dynamically, then delete it.",
-      docs: "https://noctisnova.com/docs/dead-code/dead-files",
+      docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
       penalty: PENALTY_DEAD_FILE,
       bytes: node.bytes,
     });
@@ -454,7 +454,7 @@ export function findUnusedExports(graph, deadSet) {
         message:
           `\`${name}\` is exported from \`${node.rel}\` but no file that imports this module actually uses it. ` +
           "Dead exports defeat tree-shaking and bloat the bundle. Remove the export (or the whole symbol if it has no internal use).",
-        docs: "https://noctisnova.com/docs/dead-code/unused-exports",
+        docs: "https://noctisnova.com/tools/dead-doctor/dead-code-guide",
         penalty: PENALTY_UNUSED_EXPORT,
       });
     }
@@ -497,7 +497,7 @@ export function findDuplicateFiles(graph) {
         `\`${group[0].rel}\` is byte-for-byte identical to ${group.length - 1} other file${group.length - 1 !== 1 ? "s" : ""}: ` +
         `${others.join(", ")}. Copy-pasted modules drift out of sync and double the maintenance. ` +
         "Keep one canonical copy and import it from the others.",
-      docs: "https://noctisnova.com/docs/dead-code/duplicate-files",
+      docs: "https://noctisnova.com/tools/dead-doctor/advanced-reachability-and-cleanup",
       penalty: PENALTY_DUPLICATE_FILE,
       duplicates: group.map((n) => n.rel),
       redundantBytes,
