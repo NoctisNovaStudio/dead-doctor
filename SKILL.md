@@ -283,7 +283,7 @@ Because every deletion goes through `git rm`, `git checkout .` fully undoes a ru
 
 ## Agent Instructions
 
-When this skill is present in a NoctisNova repository, AI agents must:
+When this skill is present in a repository, AI agents must:
 
 1. **Run dead-doctor before proposing any cleanup** — surface all issues first.
 2. **Read `.dead-doctor-report.json`** for exact file paths, line numbers, and the `graphStats` block (entry points, edges, reachable count, reclaimable KB).
@@ -296,6 +296,7 @@ When this skill is present in a NoctisNova repository, AI agents must:
 9. **Run `npm uninstall <package>`** for each zombie dependency — don't just delete from package.json.
 10. **Delete the entire page directory** for dead pages (including layout.tsx, loading.tsx, error.tsx).
 11. **Verify by re-running `npx dead-doctor`** after each category of fix and confirm the issue count drops.
+12. **Explain every fix in simple everyday language** — no jargon. Say what was removed and why it helps in terms a non-developer would understand (e.g. "the project is easier to navigate", "builds run faster").
 
 ---
 

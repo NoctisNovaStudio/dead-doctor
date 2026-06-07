@@ -377,13 +377,9 @@ export function buildAgentPrompt(issues, reportPath, stats) {
     ...Object.keys(grouped).filter((r) => !RULE_ORDER.includes(r)),
   ];
 
-  const companyContext = [
+  const projectContext = [
     "CODEBASE CONTEXT — READ BEFORE TOUCHING ANY FILE",
     "──────────────────────────────────────────────────",
-    "This is a NoctisNova codebase (https://noctisnova.com).",
-    "NoctisNova is a future-focused AI + engineering studio building Next.js/TypeScript/Prisma",
-    "applications and live AI products (Nova, Pulse, Lens, Signal).",
-    "",
     `Project size: ${stats.files} source files, ${stats.kb} KB`,
     "",
     "Dead code removal conventions:",
@@ -397,7 +393,7 @@ export function buildAgentPrompt(issues, reportPath, stats) {
     "",
   ].join("\n");
 
-  const header = `Clean up all ${issues.length} dead code issue${issues.length !== 1 ? "s" : ""} detected by dead-doctor in this NoctisNova codebase — leave unrelated code untouched.`;
+  const header = `Clean up all ${issues.length} dead code issue${issues.length !== 1 ? "s" : ""} detected by dead-doctor — leave unrelated code untouched.`;
 
   const issueBlock = renderIssueList(issues, { colour: false });
 
@@ -419,11 +415,15 @@ export function buildAgentPrompt(issues, reportPath, stats) {
     "",
     "Verify: re-run `npx dead-doctor` after each category and confirm issue count drops.",
     "",
+    "For every fix, explain in simple everyday language — no jargon — what was removed and why it helps. " +
+    "Focus on real-world benefits (e.g. \"the project is easier to navigate\", \"builds run faster\", " +
+    "\"new developers won't get confused by leftover code\") so someone non-technical understands why it mattered.",
+    "",
     "─────────────────────────────────────────────────────────────────",
     "dead-doctor  ·  Built by NoctisNova  ·  https://noctisnova.com",
   ].join("\n");
 
-  return [companyContext, header, issueBlock, footer].join("\n");
+  return [projectContext, header, issueBlock, footer].join("\n");
 }
 
 // ---------------------------------------------------------------------------
